@@ -5,7 +5,7 @@ export const business = {
   tagline: 'Landscape construction and garden design',
 
   email: 'kkovasolutions@gmail.com',
-  phoneDisplay: '(04) 3435 5005',
+  phoneDisplay: '0434 355 005',
   phoneE164: '+61434355005',
 
   address: {
@@ -26,6 +26,4 @@ export const business = {
 export const nav = [
   { label: 'Services', href: '/#services' },
   { label: 'How we work', href: '/#process' },
-  { label: 'Reviews', href: '/#reviews' },
-  { label: 'Contact', href: '/contact' },
 ] as const;

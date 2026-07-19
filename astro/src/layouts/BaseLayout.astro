@@ -1,8 +1,8 @@
 ---
 import { Font } from 'astro:assets';
 import { business } from '../data/business';
-// import Header from '../components/Header.astro';
-// import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -16,7 +16,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LandscapeArchitect',
+  '@type': 'HomeAndConstructionBusiness',
   name: business.name,
   legalName: business.legalName,
   description: business.tagline,
@@ -65,12 +65,12 @@ const jsonLd = {
       Skip to content
     </a>
 
-    <!-- <Header /> #TODO -->
+    <Header />
 
     <main id="main" class="flex-1">
       <slot />
     </main>
 
-    <!-- <Footer /> #TODO -->
+    <Footer />
   </body>
 </html>
