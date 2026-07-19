@@ -1,0 +1,76 @@
+---
+import { Font } from 'astro:assets';
+import { business } from '../data/business';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: business.name,
+  legalName: business.legalName,
+  description: business.tagline,
+  url: Astro.site?.toString(),
+  telephone: business.phoneE164,
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: business.address.locality,
+    addressRegion: business.address.region,
+    postalCode: business.address.postcode,
+    addressCountry: business.address.country,
+  },
+  areaServed: business.suburbs.map((name) => ({ '@type': 'Place', name })),
+};
+---
+
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+
+    <Font cssVariable="--font-fraunces" preload />
+    <Font cssVariable="--font-inter" preload />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}/>
+  </head>
+
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+    >
+      Skip to content
+    </a>
+
+    <Header />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

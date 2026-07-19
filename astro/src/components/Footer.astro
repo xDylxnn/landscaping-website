@@ -1,0 +1,63 @@
+---
+import { business, nav } from '../data/business';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-paper">
+  <div class="mx-auto max-w-6xl px-6 pt-8 pb-4">
+    <div class="grid gap-12 md:grid-cols-[2fr_1fr_1fr]">
+      <div>
+        <p class="font-display text-xl tracking-tight">{business.name}</p>
+        <p class="mt-3 max-w-xs text-sm text-mist">{business.tagline}</p>
+        <p class="mt-6 text-sm text-mist">
+          Based in {business.address.locality}, {business.address.region}
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-sm tracking-tight">Areas we serve</h2>
+        <ul class="mt-4 space-y-2 text-xs text-mist">
+          {business.suburbs.map((suburb) => <li>{suburb}</li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-sm tracking-tight">Get in touch</h2>
+        <ul class="mt-4 space-y-2 text-xs">
+          <li>
+            <a href={`tel:${business.phoneE164}`} class="text-mist transition-colors hover:text-paper">
+              {business.phoneDisplay}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${business.email}`} class="text-mist transition-colors hover:text-paper">
+              {business.email}
+            </a>
+          </li>
+        </ul>
+
+        <nav class="mt-6" aria-label="Footer">
+          <ul class="space-y-2 text-xs">
+            {
+              nav.map((item) => (
+                <li>
+                  <a href={item.href} class="text-mist transition-colors hover:text-paper">
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col gap-2 border-t border-graphite pt-4 text-xs text-mist sm:flex-row sm:justify-between"
+    >
+      <p>&copy; {year} {business.legalName}</p>
+      <p>ABN {business.abn}</p>
+    </div>
+  </div>
+</footer>
