@@ -1,6 +1,225 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business } from '../data/business';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.tiff';
+import cover from '../assets/cover.webp';
+import pic1 from '../assets/example1.tiff';
+import pic2 from '../assets/example2.tiff';
+import pic3 from '../assets/pic3.webp';
+
+const services = [
+  {
+    title: 'Landscape design',
+    copy: 'Plans you can actually build from. We work out levels, drainage, planting and materials before anyone picks up a shovel, so you know what you are getting and what it costs.',
+    image: pic1,
+    alt: 'Landscape design plan laid out on site',
+  },
+  {
+    title: 'Landscape construction',
+    copy: 'Decks, paving, retaining walls, turf and irrigation. Same crew from the first dig to the final clean-up, working to the plan and the price we quoted.',
+    image: pic2,
+    alt: 'Paved courtyard and retaining wall under construction',
+  },
+  {
+
+    title: 'Garden maintenance',
+    copy: 'Scheduled visits that keep it looking the way it did on handover. Mowing, pruning, mulching and a full irrigation check before summer hits.',
+    image: pic1,
+    alt: 'Maintained garden bed with fresh mulch and clipped hedging',
+  },
+];
+
+const expertise = [
+  {
+    title: 'Retaining walls that hold',
+    copy: 'Walls designed for the load sitting behind them, with proper drainage and backfill. Anything over a metre gets engineered drawings and a permit, not a guess.',
+  },
+  {
+    title: 'Water goes where we put it',
+    copy: 'Falls, agi drains and surface levels worked out before we start, so runoff moves away from the house instead of pooling against the slab.',
+  },
+  {
+    title: 'Set out before it is dug',
+    copy: 'Levels shot and marked ahead of excavation. Paving and decking that sit true to the building and still drain the way they should.',
+  },
+  {
+    title: 'Specced, not eyeballed',
+    copy: 'Base depths, compaction and reinforcement to spec. It costs a little more on day one and saves you a rebuild in five years.',
+  },
+];
+
+const reviews = [
+  { quote: 'The team completely transformed our backyard. They were professional, reliable, and paid attention to every detail. We couldn’t be happier with the result.', name: 'Sanjay', suburb: 'Kalkallo' },
+  { quote: 'From the initial consultation to the final clean-up, the service was excellent. Our garden now looks beautiful, tidy, and easy to maintain.', name: 'Michael Benstead', suburb: 'Donnybrook' },
+  { quote: 'Fantastic workmanship and friendly service. They brought our landscaping ideas to life and delivered an outdoor space that exceeded our expectations.', name: 'Alen Sabu', suburb: 'Craigieburn' },
+];
+
+
+const suburbList = business.suburbs.join(', ');
 ---
 
-		<BaseLayout title="Astro" description="Astro is a modern front-end framework for building fast, content-focused websites.">
-		</BaseLayout>
+<BaseLayout
+  title="Landscaping & Garden Design in Melbourne's North"
+  description={`${business.name} builds decks, paving, retaining walls and gardens across ${suburbList}. Fixed-price quotes and clear timelines.`}
+>
+  <section class="relative isolate overflow-hidden bg-ink text-paper">
+	<Image
+    src={pic3}
+    alt=""
+    layout="none"
+    widths={[640, 1024, 1600]}
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    class="absolute inset-0 -z-20 h-full w-full object-cover"
+  />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/85 to-ink/40"></div>
+
+    <div class="mx-auto max-w-6xl px-6 py-28 md:py-40">
+      <div class="max-w-2xl rounded border border-paper/15 bg-paper/5 p-8 backdrop-blur-md md:p-12">
+        <h1 class="font-display text-4xl leading-tight md:text-6xl">Built properly, priced up front</h1>
+        <p class="mt-6 max-w-xl text-lg text-mist">
+          Landscape construction and garden design across Melbourne's northern suburbs. Fixed-price
+          quotes, a start date you can hold us to, and a site left clean every afternoon.
+        </p>
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="/contact"
+            class="rounded bg-paper px-6 py-3 text-center text-sm text-ink transition-colors hover:bg-mist"
+          >
+            Get a fixed-price quote
+          </a>
+          <a
+            href={`tel:${business.phoneE164}`}
+            class="rounded border border-paper/30 px-6 py-3 text-center text-sm text-paper transition-colors hover:bg-paper/10"
+          >
+            Call {business.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="border-b border-mist bg-paper">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <h2 class="font-display text-3xl md:text-4xl">Designing, Creating and Maintaining Timeless Gardens</h2>
+      <p class="mt-4 max-w-xl text-slate">
+        Make your dreams come true with our expert landscaping services. From initial design to final touches, we create outdoor spaces that are both beautiful and functional.
+      </p>
+
+      <div
+        class="mt-14 -mx-6 snap-x snap-mandatory scroll-px-6 overflow-x-auto px-6 pb-6"
+        tabindex="0"
+        role="group"
+        aria-label="Our services, scroll horizontally to browse"
+      >
+        <ul class="flex gap-6">
+          {
+            services.map((service) => (
+              <li class="w-[82%] shrink-0 snap-start sm:w-[46%] lg:w-[calc((100%-3rem)/3)]">
+                <Image
+                  src={service.image}
+                  alt={service.alt}
+                  layout="none"
+                  widths={[400, 800, 1200]}
+                  sizes="(min-width: 1024px) 33vw, 82vw"
+                  loading="lazy"
+                  class="aspect-[4/3] w-full rounded object-cover"
+                />
+                <h3 class="mt-5 font-display text-xl">{service.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate">{service.copy}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="border-b border-mist bg-fog">
+    <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <div class="grid gap-14 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl">We come at it from engineering</h2>
+          <p class="mt-6 leading-relaxed text-slate">
+            Most landscaping that fails does not fail because of the planting. It fails because of
+            drainage, levels and load — a retaining wall bowing out, water sitting against the slab,
+            paving that has dropped at one end. Those problems surface two winters after the job is
+            paid for.
+          </p>
+          <p class="mt-4 leading-relaxed text-slate">
+            {business.name} is run by people with engineering backgrounds, so that is the part we
+            solve first. The garden goes on top of work that was calculated rather than estimated.
+          </p>
+
+          <Image
+            src={cover}
+            alt="Retaining wall and drainage detail during construction"
+            layout="none"
+            widths={[600, 1000]}
+            sizes="(min-width: 1024px) 45vw, 90vw"
+            loading="lazy"
+            class="mt-10 aspect-[3/2] w-full rounded object-cover"
+          />
+        </div>
+
+        <ul class="grid gap-10 sm:grid-cols-2 lg:grid-cols-1 lg:gap-8">
+          {
+            expertise.map((item) => (
+              <li class="border-t border-mist pt-6">
+                <h3 class="font-display text-xl">{item.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate">{item.copy}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+      <section id="reviews" class="border-b border-mist bg-paper">
+        <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <h2 class="font-display text-3xl md:text-4xl">What our clients say</h2>
+          <ul class="mt-14 grid gap-10 md:grid-cols-3">
+            {reviews.map((review) => (
+              <li class="border-t border-mist pt-6">
+                <blockquote class="text-sm leading-relaxed">{review.quote}</blockquote>
+                <p class="mt-4 text-sm text-slate">
+                  {review.name} — {review.suburb}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    
+
+  <section class="relative isolate overflow-hidden bg-ink text-paper">
+    <div class="absolute inset-0 -z-20 bg-graphite"></div>
+    <div class="absolute inset-0 -z-10 bg-ink/85"></div>
+
+    <div class="mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
+      <h2 class="font-display text-3xl md:text-4xl">Thinking about the backyard?</h2>
+      <p class="mx-auto mt-5 max-w-xl text-mist">
+        Tell us what you are after and we will come out, measure up, and put a fixed price in front of
+        you. Servicing {suburbList} and the surrounding area.
+      </p>
+      <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+        <a
+          href="/contact"
+          class="rounded bg-paper px-6 py-3 text-sm text-ink transition-colors hover:bg-mist"
+        >
+          Get a fixed-price quote
+        </a>
+        <a
+          href={`tel:${business.phoneE164}`}
+          class="rounded border border-paper/30 px-6 py-3 text-sm text-paper transition-colors hover:bg-paper/10"
+        >
+          Call {business.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
