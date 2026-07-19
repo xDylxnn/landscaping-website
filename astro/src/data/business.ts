@@ -8,8 +8,6 @@ export const business = {
   phoneDisplay: '(04) 3435 5005',
   phoneE164: '+61434355005',
 
-  domain: 'https://example.com',
-
   address: {
     locality: 'Kalkallo',
     region: 'VIC',
@@ -23,11 +21,6 @@ export const business = {
     'Craigieburn',
     'Epping',
   ],
-
-  hours: [
-  ],
-
-  social: [] as Array<string>,
 } as const;
 
 export const nav = [
