@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout
+  title="Enquiry received"
+  description="Thanks for getting in touch. We will be back to you within one business day."
+  noindex
+>
+  <section class="bg-paper">
+    <div class="mx-auto max-w-2xl px-6 py-28 text-center md:py-36">
+      <h1 class="font-display text-4xl md:text-5xl">Got it, thanks</h1>
+      <p class="mt-6 leading-relaxed text-slate">
+        Your enquiry has landed in our inbox. We will get back to you within one business day to sort
+        out a time to come and have a look.
+      </p>
+      <p class="mt-4 leading-relaxed text-slate">
+        If it is urgent, give us a call on
+        <a href={`tel:${business.phoneE164}`} class="text-ink underline underline-offset-4">
+          {business.phoneDisplay}
+        </a>.
+      </p>
+      <a
+        href="/"
+        class="mt-10 inline-block rounded bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-graphite"
+      >
+        Back to home
+      </a>
+    </div>
+  </section>
+</BaseLayout>

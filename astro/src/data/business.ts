@@ -21,6 +21,10 @@ export const business = {
     'Craigieburn',
     'Epping',
   ],
+
+  // Web3Forms access key. Public by design — it is visible in the form markup.
+  // Get it by verifying the client's email at https://web3forms.com
+  formAccessKey: 'PLACEHOLDER-ACCESS-KEY',
 } as const;
 
 export const nav = [

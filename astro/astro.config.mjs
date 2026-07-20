@@ -11,7 +11,7 @@ export default defineConfig({
   // @astrojs/sitemap emits nothing without `site` set.
   site: 'https://example.com',
 
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/thanks') })],
 
   fonts: [
     {

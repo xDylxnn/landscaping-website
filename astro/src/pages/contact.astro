@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { business } from '../data/business';
+
+const suburbList = business.suburbs.join(', ');
+const redirectUrl = new URL('/thanks', Astro.site).href;
+
+const serviceOptions = [
+  'Landscape design',
+  'Landscape construction',
+  'Garden maintenance',
+  'Not sure yet',
+];
+
+const fieldClass =
+  'mt-2 w-full rounded border border-mist bg-paper px-4 py-3 text-sm text-ink placeholder:text-slate focus:border-ink focus:outline-none';
+const labelClass = 'block text-sm';
+---
+
+<BaseLayout
+  title="Get a Quote"
+  description={`Request a fixed-price landscaping quote from ${business.name}. Servicing ${suburbList} and surrounding suburbs in Melbourne's north.`}
+>
+  <section class="border-b border-mist bg-fog">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <h1 class="font-display text-4xl md:text-5xl">Get a fixed-price quote</h1>
+      <p class="mt-5 max-w-xl leading-relaxed text-slate">
+        Tell us what you are after and we will come out, measure up, and put a price in front of you.
+        Site visits are free and there is no obligation to go ahead.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-paper">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div class="grid gap-14 lg:grid-cols-[3fr_2fr] lg:gap-20">
+        <form action="https://api.web3forms.com/submit" method="POST" class="max-w-xl">
+          <input type="hidden" name="access_key" value={business.formAccessKey} />
+          <input type="hidden" name="subject" value={`New quote request — ${business.name} website`} />
+          <input type="hidden" name="from_name" value={`${business.name} website`} />
+          <input type="hidden" name="redirect" value={redirectUrl} />
+
+          {/* Honeypot: hidden from people, tempting to bots. Web3Forms discards any submission that fills it. */}
+          <input
+            type="checkbox"
+            name="botcheck"
+            class="hidden"
+            style="display:none"
+            tabindex="-1"
+            autocomplete="off"
+          />
+
+          <div class="grid gap-6 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label class={labelClass} for="name">Your name</label>
+              <input
+                class={fieldClass}
+                id="name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div>
+              <label class={labelClass} for="phone">Phone</label>
+              <input
+                class={fieldClass}
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                required
+              />
+            </div>
+
+            <div>
+              <label class={labelClass} for="email">Email</label>
+              <input
+                class={fieldClass}
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div>
+              <label class={labelClass} for="suburb">Suburb</label>
+              <input
+                class={fieldClass}
+                id="suburb"
+                name="suburb"
+                type="text"
+                autocomplete="address-level2"
+                required
+              />
+            </div>
+
+            <div>
+              <label class={labelClass} for="service">What do you need?</label>
+              <select class={fieldClass} id="service" name="service">
+                {serviceOptions.map((option) => <option value={option}>{option}</option>)}
+              </select>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class={labelClass} for="message">About the project</label>
+              <textarea
+                class={fieldClass}
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Rough size of the area, what you are picturing, and any timing you are working to."
+                required></textarea>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="mt-8 w-full rounded bg-ink px-6 py-3 text-sm text-paper transition-colors hover:bg-graphite sm:w-auto"
+          >
+            Send enquiry
+          </button>
+
+          <p class="mt-4 text-xs text-slate">
+            We will get back to you within one business day. Your details are only used to quote your
+            job.
+          </p>
+        </form>
+
+        <aside class="text-sm">
+          <h2 class="font-semibold text-base">Prefer to talk?</h2>
+          <p class="mt-2 text-ink/75">
+            Call <a href={`tel:${business.phoneE164}`} class="underline decoration-moss underline-offset-2"
+              >{business.phoneDisplay}</a
+            > any day 7am–7pm, or email 
+            <a
+              href={`mailto:${business.email}`}
+              class="underline decoration-moss underline-offset-2"> {business.email}</a
+            >.
+          </p>
+          <h2 class="mt-8 font-semibold text-base">Service area</h2>
+          <p class="mt-2 text-ink/75">
+            Melbourne's greater noth — Kalkallo, Donnybrook, Craigieburn, Epping, Lalor and surrounds.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
