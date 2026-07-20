@@ -24,7 +24,7 @@ export const business = {
 
   // Web3Forms access key. Public by design — it is visible in the form markup.
   // Get it by verifying the client's email at https://web3forms.com
-  formAccessKey: 'PLACEHOLDER-ACCESS-KEY',
+  formAccessKey: '71432f51-ad4f-4996-ad43-61da81f281d6',
 } as const;
 
 export const nav = [
