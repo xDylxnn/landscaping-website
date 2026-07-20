@@ -2,31 +2,65 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { business } from '../data/business';
 import { Image } from 'astro:assets';
-import logo from '../assets/logo.tiff';
 import cover from '../assets/cover.webp';
-import pic1 from '../assets/example1.tiff';
-import pic2 from '../assets/example2.tiff';
 import pic3 from '../assets/pic3.webp';
+import concreting from '../assets/concreting.jpg';
+import landscaping from '../assets/landscaping.tiff';
+import lighting from '../assets/lighting.jpg';
+import design from '../assets/design.jpg';
+import decking from '../assets/decking.jpg';
+import camera from '../assets/camera.jpg';
+import landcon from '../assets/landcon.jpg';
+import retaining from '../assets/retaining.jpg';
 
 const services = [
   {
     title: 'Landscape design',
     copy: 'Plans you can actually build from. We work out levels, drainage, planting and materials before anyone picks up a shovel, so you know what you are getting and what it costs.',
-    image: pic1,
+    image: design,
     alt: 'Landscape design plan laid out on site',
   },
   {
     title: 'Landscape construction',
     copy: 'Decks, paving, retaining walls, turf and irrigation. Same crew from the first dig to the final clean-up, working to the plan and the price we quoted.',
-    image: pic2,
+    image: landcon,
     alt: 'Paved courtyard and retaining wall under construction',
   },
   {
-
     title: 'Garden maintenance',
     copy: 'Scheduled visits that keep it looking the way it did on handover. Mowing, pruning, mulching and a full irrigation check before summer hits.',
-    image: pic1,
+    image: landscaping,
     alt: 'Maintained garden bed with fresh mulch and clipped hedging',
+  },
+  {
+    title: 'Retaining walls',
+    copy: 'Block, timber and concrete sleeper walls built for the load sitting behind them. Proper footings, drainage and backfill, and engineered drawings with a permit for anything over a metre.',
+    image: retaining,
+    alt: 'Concrete sleeper retaining wall built into a sloping backyard',
+  },
+  {
+    title: 'Decking',
+    copy: 'Merbau, spotted gum and composite decks, plus pergolas and privacy screens. Built level, fixed properly, and finished so it still looks right after a few summers.',
+    image: decking,
+    alt: 'Timber deck and pergola built off the back of a house',
+  },
+  {
+    title: 'CCTV camera installation',
+    copy: 'Cameras positioned to cover the gaps that matter — driveway, side access and the rear of the property. Cabling run and concealed as part of the build instead of stapled on afterwards.',
+    image: camera,
+    alt: 'Security camera mounted under the eaves of a house',
+  },
+  {
+    title: 'Lighting installation',
+    copy: 'Garden, path and feature lighting set out with the landscaping rather than after it. Wiring goes in while the ground is already open, so you are not paying to trench the same yard twice.',
+    image: lighting,
+    alt: 'Garden path lit by low-level outdoor lighting at dusk',
+  },
+  {
+    title: 'Concreting',
+    copy: 'Driveways, slabs, paths and crossovers. Reinforced, poured to depth and cured properly, with falls set so water moves away from the house instead of toward it.',
+    image: concreting,
+    alt: 'Freshly poured and finished concrete driveway',
   },
 ];
 
@@ -80,7 +114,7 @@ const suburbList = business.suburbs.join(', ');
       <div class="max-w-2xl rounded border border-paper/15 bg-paper/5 p-8 backdrop-blur-md md:p-12">
         <h1 class="font-display text-4xl leading-tight md:text-6xl">Built properly, priced up front</h1>
         <p class="mt-6 max-w-xl text-lg text-mist">
-          Landscape construction and garden design across Melbourne's northern suburbs. Fixed-price
+          Landscape construction and garden design across Melbourne's northern suburbs. Free
           quotes, a start date you can hold us to, and a site left clean every afternoon.
         </p>
         <div class="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -88,7 +122,7 @@ const suburbList = business.suburbs.join(', ');
             href="/contact"
             class="rounded bg-paper px-6 py-3 text-center text-sm text-ink transition-colors hover:bg-mist"
           >
-            Get a fixed-price quote
+            Get a free quote
           </a>
           <a
             href={`tel:${business.phoneE164}`}
@@ -201,7 +235,7 @@ const suburbList = business.suburbs.join(', ');
     <div class="absolute inset-0 -z-10 bg-ink/85"></div>
 
     <div class="mx-auto max-w-4xl px-6 py-24 text-center md:py-32">
-      <h2 class="font-display text-3xl md:text-4xl">Thinking about the backyard?</h2>
+      <h2 class="font-display text-3xl md:text-4xl">Want to make your dreams come true?</h2>
       <p class="mx-auto mt-5 max-w-xl text-mist">
         Tell us what you are after and we will come out, measure up, and put a fixed price in front of
         you. Servicing {suburbList} and the surrounding area.
@@ -211,7 +245,7 @@ const suburbList = business.suburbs.join(', ');
           href="/contact"
           class="rounded bg-paper px-6 py-3 text-sm text-ink transition-colors hover:bg-mist"
         >
-          Get a fixed-price quote
+          Get a free quote
         </a>
         <a
           href={`tel:${business.phoneE164}`}
