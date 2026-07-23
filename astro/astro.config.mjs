@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   // TODO: replace with the client's real domain before deploying.
   // @astrojs/sitemap emits nothing without `site` set.
-  site: 'https://example.com',
+  site: 'https://kevrosolutions.com',
 
   integrations: [sitemap({ filter: (page) => !page.includes('/thanks') })],
 

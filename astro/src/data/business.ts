@@ -16,10 +16,9 @@ export const business = {
   },
 
   suburbs: [
-    'Kalkallo',
-    'Donnybrook',
-    'Craigieburn',
-    'Epping',
+    'Northern Suburbs',
+    'Western Suburbs',
+    'Eastern Suburbs',
   ],
 
   // Web3Forms access key. Public by design — it is visible in the form markup.
